@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          <button type="button" class="btn btn-primary">Primary</button>
-        </a>
-      </header>
-    </div>
+	<div className="App">
+    	{/* Inputs */}
+    	<div className="row my-1">
+    		<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    		<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    		<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+		</div>
+		
+		<div className="row">
+			{/* Left side */}
+			<div className="col">
+				{/* Numbers */}
+				<div className="row my-1">
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+				</div>
+				<div className="row my-1">
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+				</div>
+				<div className="row my-1">
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+				</div>
+				{/* Other */}
+				<div className="row my-1">
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+    				<button type="button" class="col mx-1 btn btn-primary">Primary</button>
+				</div>
+			</div>
+			
+			{/* right side */}
+			<div className="col">
+				<button type="button" className="mx-1 btn btn-primary">Primary</button>
+				<button type="button" className="mx-1 btn btn-primary">Primary</button>
+				<button type="button" className="mx-1 btn btn-primary">Primary</button>
+			</div>
+		</div>
+	</div>
   );
 }
 
