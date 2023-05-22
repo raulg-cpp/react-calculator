@@ -16,6 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          <button type="button" class="btn btn-primary">Primary</button>
         </a>
       </header>
     </div>
