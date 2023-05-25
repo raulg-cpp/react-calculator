@@ -10,39 +10,36 @@ function App() {
 	const [string, setString] = useState("");
 		
 	//=== Functions ===
-	// 1. numbers
-	const numberButtons = [];
-	
-	for( let i = 0; i <= 9; i += 1 ) {
+	// 1. numbers	
+	function numberButton(num, style="") {
 		const func = () => { 
 			if( string === "" ) {
-				setString( i.toString() );
+				setString( num.toString() );
 			} else {
-				setString(string + i);
+				setString(string + num);
 			}
 		};
-		numberButtons.push( <Button key={i} text={i} func={func} className="btn-secondary" /> );
+		return ( <Button key={num} text={num} func={func} className={style} /> );
 	}
 	
 	// 2. operations
-	const operationButtons = [];
-	const operations = "+-/*.";
-	
-	for( const char of operations ) {
+	function operationButton(char, style="") {
 		const func = () => {
-				setString(string + char);
+			setString(string + char);
 		}
-		operationButtons.push( <Button key={char} text={char} func={func} className="btn-primary" /> );
+		return ( <Button key={char} text={char} func={func} className={style} /> );
 	}
 		
 	// 3. evaluation
 	const funcEqual = () => {
-		try { 
-			let num = evaluate(string);
-			setOutput( num );
-			setString( num.toString() );		
-		} catch(error) {
-			setOutput("SYNTAX ERROR");
+		if( string !== "" ) {
+			try { 
+				let num = evaluate(string);
+				setOutput( num );
+				setString( num.toString() );		
+			} catch(error) {
+				setOutput("SYNTAX ERROR");
+			}
 		}
 	};
 	
@@ -57,22 +54,69 @@ function App() {
 	
 	//=== JSX ===
 	return (
-		<div>
+	<div className="App d-flex justify-content-center align-items-center">
+		<div className="container mainBox border border-2 border-secondary">
+			{/* Display */}
+			<div className="mt-2 text-end">
+				<span className="text-warning fs-6">{string}</span>
+				<br />
+				<span className="text-light fs-5">{output}</span>
+			</div>
+		
 			{/* Buttons */}
-			{numberButtons} 	
-			{operationButtons}
-			
-			{/* Special operations */}
-			<Button key="=" text={'='} func={funcEqual} className="btn-warning" />
-			<Button key="ac" text={'AC'} func={funcClear} className="btn-warning" />
-			<Button key="del" text={'DEL'} func={funcDel} className="btn-danger" />
-			
-			{/* Output */}
-			<br />
-			<span>{string}</span>
-			<br />
-			<span>{output}</span>
+			<div className="row">
+				{/* left column */}
+				<div className="col">
+					{/* top operators */}
+					<div className="row mt-1">
+						<Button key="ac" text={'AC'} func={funcClear} className="ms-1 col btn btn-danger button" />
+					</div>
+				
+					{/* Numbers */}
+					<div className="row mt-1">
+						{ numberButton(7, "mx-1 col btn btn-secondary button") }
+						{ numberButton(8, "col btn btn-secondary button")  }
+					</div>
+					<div className="row mt-1">
+						{ numberButton(4, "mx-1 col btn btn-secondary button") }
+						{ numberButton(5, "col btn btn-secondary button") }
+					</div>
+					<div className="row mt-1">
+						{ numberButton(3, "mx-1 col btn btn-secondary button") }
+						{ numberButton(2, "col btn btn-secondary button") }
+					</div>
+					
+					{/* Bottom operators */}
+					<div className="row my-1">
+						{ numberButton(0, "ms-1 col btn btn-secondary button") }
+					</div>
+				</div>
+				
+				{/* middle column */}
+				<div className="col-3 ms-1">
+		    		<div className="row">
+		    			{ operationButton('/', "mt-1 btn btn-info button") }
+    					{ numberButton(9, "my-1 btn btn-secondary button") }
+    					{ numberButton(6, "mb-1 btn btn-secondary button") }
+    					{ numberButton(1, "mb-1 btn btn-secondary button") }
+    					{ operationButton('.', "btn btn-secondary button") }
+					</div>
+				</div>
+				
+				
+				{/* right column */}
+				<div className="col-3 mx-1">
+		    		<div className="row">
+		    			{ operationButton('*', "mt-1 btn btn-info button") }
+		    			{ operationButton('-', "my-1 btn btn-info button") }
+		    			{ operationButton('+', "mb-1 btn btn-info button") }
+		    			<Button key="=" text={'='} func={funcEqual} className="btn btn-primary button" />
+		    			<Button key="del" text={'DEL'} func={funcDel} className="mt-1 btn btn-warning button" />
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
 	);
 }
 

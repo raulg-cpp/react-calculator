@@ -30,3 +30,17 @@ https://legacy.reactjs.org/docs/hooks-state.html
 https://legacy.reactjs.org/docs/lifting-state-up.html
 
 https://sentry.io/answers/unique-key-prop/
+
+## CSS
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+
+https://stackoverflow.com/questions/48665316/how-to-create-a-css-grid-with-3-columns-and-unlimited-amount-of-items
+
+## Javascript
+https://masteringjs.io/tutorials/fundamentals/remove-last-character
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
+
+https://flexiple.com/javascript/javascript-dictionary/
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
