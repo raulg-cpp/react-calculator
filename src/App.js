@@ -8,7 +8,6 @@ function App() {
 	//=== State ===
 	const [output, setOutput] = useState(0);
 	const [string, setString] = useState("");
-	const [decimal, setDecimal] = useState(true);
 		
 	//=== Functions ===
 	// 1. numbers
@@ -25,47 +24,35 @@ function App() {
 		numberButtons.push( <Button key={i} text={i} func={func} className="btn-secondary" /> );
 	}
 	
-	// 2A. operations
+	// 2. operations
 	const operationButtons = [];
-	const operations = "+-/*";
-	
-	const checkOperation = () => {
-		return operations.includes( string.at(-1) );
-	}
+	const operations = "+-/*.";
 	
 	for( const char of operations ) {
 		const func = () => {
-			if( !checkOperation() ) { 
 				setString(string + char);
-				setDecimal(true);
-			}
 		}
 		operationButtons.push( <Button key={char} text={char} func={func} className="btn-primary" /> );
 	}
-	
-	// 2B. period
-	const funcPeriod = () => {		
-		if( string === "" ) {
-			setString("0.");
-		} else if( decimal ) { 					
-			setDecimal(false);
-			setString(string + '.');
-		}
-	}
-	
+		
 	// 3. evaluation
 	const funcEqual = () => {
-		if( !checkOperation() ) { 
+		try { 
 			let num = evaluate(string);
 			setOutput( num );
 			setString( num.toString() );		
-			setDecimal( ( Number.isInteger(num) )  );	// Prevent double period
+		} catch(error) {
+			setOutput("SYNTAX ERROR");
 		}
 	};
 	
 	const funcClear = () => {
 		setString("");
 		setOutput(0);
+	};
+	
+	const funcDel = () => {
+		setString( string.slice(0,-1) );	
 	};
 	
 	//=== JSX ===
@@ -78,7 +65,7 @@ function App() {
 			{/* Special operations */}
 			<Button key="=" text={'='} func={funcEqual} className="btn-warning" />
 			<Button key="ac" text={'AC'} func={funcClear} className="btn-warning" />
-			<Button key="period" text={'.'} func={funcPeriod} className="btn-warning" />
+			<Button key="del" text={'DEL'} func={funcDel} className="btn-danger" />
 			
 			{/* Output */}
 			<br />
