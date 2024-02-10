@@ -50,7 +50,7 @@ export function Chart({bounds, graphs}) {
         		top: 10,
         		right: 20,
         		left: 20,
-        		bottom: 40
+        		bottom: 20
     	}}>
         	
         	{/* Grid highlight */}
